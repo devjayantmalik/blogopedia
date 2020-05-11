@@ -4,11 +4,9 @@ import AccountMenu from "./AccountMenu";
 import SearchItem from "./SearchItem";
 
 class Header extends React.Component {
-
     onSearchSubmit = (text) => {
         console.log(text);
-    }
-
+    };
 
     render() {
         return (
@@ -18,7 +16,10 @@ class Header extends React.Component {
                 </a>
 
                 <div className="right menu">
-                    <SearchItem placeholder="Search for articles..." onSubmit={this.onSearchSubmit} />
+                    <SearchItem
+                        placeholder="Search for articles..."
+                        onSubmit={this.onSearchSubmit}
+                    />
                     <a className="item" href="/">
                         Subjects
                     </a>
