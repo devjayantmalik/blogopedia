@@ -1,8 +1,12 @@
 import React from 'react';
 
+import Header from './Header/Header.js';
+
 const App = () => {
   return(
-    <div>Blog - O - Pedia</div>
+    <React.Fragment>
+      <Header />
+    </React.Fragment>
   )
 }
 export default App;
