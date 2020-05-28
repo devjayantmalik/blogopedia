@@ -1,14 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import Header from './Header/index';
-import Articles from './Articles';
+import ClientRouter from "../routers/ClientRouter";
 
-const App = () => {
-  return(
-    <React.Fragment>
-      <Header />
-      <Articles />
-    </React.Fragment>
-  )
-}
+const App = () => <ClientRouter />;
+
 export default App;
