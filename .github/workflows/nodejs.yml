@@ -1,28 +1,29 @@
 name: build-test
 
 on:
-  pull_request:
-    paths-ignore:
-      - '**.md'    
-  push:    
-    branches:
-      - master
-    paths-ignore:
-      - '**.md'
-      
+    pull_request:
+        paths-ignore:
+            - "**.md"
+    push:
+        branches:
+            - master
+        paths-ignore:
+            - "**.md"
+
 jobs:
-  build:
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup node 12
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - run: npm ci
-      - run: yarn build
-      - run: yarn lint
-      - run: yarn test
+    build:
+        runs-on: ${{ matrix.operating-system }}
+        strategy:
+            matrix:
+                operating-system: [ubuntu-latest]
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup node 12
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 12.x
+            - run: yarn install
+            - run: npm ci
+            - run: yarn build
+            - run: yarn lint
+            - run: yarn test
