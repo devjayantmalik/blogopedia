@@ -1,7 +1,14 @@
 import React from "react";
+import Hero from "./Hero";
+import Content from "./Content";
 
 const Article = () => {
-    return <h1>Article Page</h1>;
+    return (
+        <main>
+            <Hero />
+            <Content />
+        </main>
+    );
 };
 
 export default Article;
