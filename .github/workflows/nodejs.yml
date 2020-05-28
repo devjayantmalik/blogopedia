@@ -1,23 +1,28 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+name: build-test
 
 on:
-    push:
-        branches: [master]
-    pull_request:
-        branches: [master]
-
+  pull_request:
+    paths-ignore:
+      - '**.md'    
+  push:    
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      
 jobs:
-    build:
-        runs-on: ubuntu-latest
-
-        steps:
-            - uses: actions/checkout@v1
-              with:
-                  node-version: "12.x"
-            - run: yarn install
-            - run: yarn test
-            - run: yarn build
-            - run: npm deploy
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - run: npm ci
+      - run: yarn build
+      - run: yarn lint
+      - run: yarn test
